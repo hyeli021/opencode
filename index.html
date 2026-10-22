@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- 모바일에서도 화면 크기에 맞게 보이도록 설정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker · 습관 트래커</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== 상단: 제목 + 오늘 날짜 ===== -->
+    <header class="header">
+      <h1 class="title">Habit Tracker</h1>
+      <p class="today" id="todayDate">날짜를 불러오는 중...</p>
+    </header>
+
+    <!-- ===== 오늘의 진행률 카드 ===== -->
+    <section class="card stats-card" aria-labelledby="statsTitle">
+      <h2 class="card-title" id="statsTitle">오늘의 진행률</h2>
+
+      <div class="stats-row">
+        <!-- 완료한 습관 개수 -->
+        <div class="stat">
+          <span class="stat-num" id="doneCount">0</span>
+          <span class="stat-label">완료</span>
+        </div>
+        <span class="stat-divider" aria-hidden="true">/</span>
+        <!-- 전체 습관 개수 -->
+        <div class="stat">
+          <span class="stat-num" id="totalCount">0</span>
+          <span class="stat-label">전체</span>
+        </div>
+        <div class="stat stat-right">
+          <span class="stat-num" id="percent">0%</span>
+          <span class="stat-label">달성률</span>
+        </div>
+      </div>
+
+      <!-- 진행률 바 -->
+      <div class="progress" id="progress" role="progressbar"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="오늘 달성률">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </section>
+
+    <!-- ===== 습관 추가 카드 ===== -->
+    <section class="card add-card" aria-labelledby="addTitle">
+      <h2 class="card-title" id="addTitle">새 습관 추가</h2>
+      <form class="add-form" id="habitForm" autocomplete="off">
+        <input
+          type="text"
+          id="habitInput"
+          class="habit-input"
+          placeholder="예: 물 2잔 마시기"
+          maxlength="50"
+          aria-label="추가할 습관 이름"
+          required>
+        <button type="submit" class="btn btn-primary" id="addBtn">추가</button>
+      </form>
+    </section>
+
+    <!-- ===== 습관 목록 카드 ===== -->
+    <section class="card list-card" aria-labelledby="listTitle">
+      <div class="list-head">
+        <h2 class="card-title" id="listTitle">
+          나의 습관 <span class="count-badge" id="listCount">0</span>
+        </h2>
+
+        <!-- 필터 버튼 (전체 / 완료 / 미완료) -->
+        <div class="filters" id="filters" role="group" aria-label="습관 필터">
+          <button type="button" class="filter-btn is-active" data-filter="all">전체</button>
+          <button type="button" class="filter-btn" data-filter="done">완료</button>
+          <button type="button" class="filter-btn" data-filter="todo">미완료</button>
+        </div>
+      </div>
+
+      <!-- 자바스크립트가 여기에 목록을 만들어 넣습니다 -->
+      <ul class="habit-list" id="habitList"></ul>
+
+      <!-- 습관이 없을 때 보여주는 빈 상태 화면 -->
+      <div class="empty" id="emptyState" hidden>
+        <p class="empty-icon" aria-hidden="true">🌱</p>
+        <p class="empty-text" id="emptyText">아직 습관이 없어요. 위에서 첫 번째 습관을 추가해 보세요!</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>데이터는 이 브라우저의 localStorage에만 저장됩니다.</p>
+      <button type="button" class="link-btn" id="clearAllBtn">전체 삭제</button>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
