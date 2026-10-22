@@ -1,4 +1,4 @@
-# Habit Tracker
+# First OpenCode
 
 간단한 습관( Habit ) 기록 웹앱입니다. HTML / CSS / Vanilla JavaScript / localStorage 만 사용했고, 외부 라이브러리는 사용하지 않았습니다.
 
